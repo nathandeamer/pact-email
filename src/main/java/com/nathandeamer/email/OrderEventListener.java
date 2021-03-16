@@ -11,7 +11,7 @@ public class OrderEventListener {
 	private final EmailService emailService;
 
 	@KafkaListener(topics = "orders")
-	public void listen(Order order) throws Exception {
-		emailService.doSomething(order);
+	public void listen(OrderEvent orderEvent) throws Exception {
+		emailService.doSomething(orderEvent);
 	}
 }

@@ -10,7 +10,7 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @Data
 @Builder
-class Order {
+class OrderEvent {
   private int id;
   private String type;
 }

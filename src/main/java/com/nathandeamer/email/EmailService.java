@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class EmailService {
-    public void doSomething(Order order) {
-        System.out.println(order);
+    public void doSomething(OrderEvent orderEvent) {
+        System.out.println(orderEvent);
     }
 }

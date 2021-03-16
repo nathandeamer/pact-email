@@ -50,13 +50,13 @@ public class OrdersPactTest {
   @PactTestFor(pactMethod = "orderMessage")
   void getOrderMessage(List<Message> messages) throws Exception {
     ObjectMapper mapper = new ObjectMapper();
-    Order order = mapper.readValue(messages.get(0).contentsAsString(), Order.class);
+    OrderEvent orderEvent = mapper.readValue(messages.get(0).contentsAsString(), OrderEvent.class);
 
     assertDoesNotThrow(() -> {
-      listener.listen(order);
+      listener.listen(orderEvent);
     });
 
-    assertThat(order).isEqualTo(Order.builder().id(1234).type("CREATED").build());
+    assertThat(orderEvent).isEqualTo(OrderEvent.builder().id(1234).type("CREATED").build());
   }
 
 }
