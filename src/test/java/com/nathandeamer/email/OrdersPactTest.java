@@ -24,13 +24,13 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 @ExtendWith(PactConsumerTestExt.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
-@PactTestFor(providerName = "orders", providerType = ProviderType.ASYNCH)
+@PactTestFor(providerName = "orders-topic", providerType = ProviderType.ASYNCH)
 public class OrdersPactTest {
 
   @Autowired
   private OrderEventListener listener;
 
-  @Pact(consumer = "orders")
+  @Pact(consumer = "email")
   MessagePact orderMessage(MessagePactBuilder builder) {
     PactDslJsonBody body = new PactDslJsonBody();
     body.integerType("id", 1234);
@@ -57,6 +57,6 @@ public class OrdersPactTest {
     });
 
     assertThat(order).isEqualTo(Order.builder().id(1234).type("CREATED").build());
-
   }
+
 }
